@@ -711,10 +711,10 @@ fun processMacroReferenceVariants(ref: RsMacroReference, processor: RsResolvePro
 /**
  * Attribute macro can only be resolved to its definition.
  */
-fun processAttributeProcMacroResolveVariants(element: RsMetaItem, processor: RsResolveProcessor): Boolean =
+fun processAttributeProcMacroResolveVariants(element: RsPath, processor: RsResolveProcessor): Boolean =
     processNestedScopesUpwards(element, MACROS, processor)
 
-fun processDeriveTraitResolveVariants(element: RsMetaItem, traitName: String, processor: RsResolveProcessor): Boolean {
+fun processDeriveTraitResolveVariants(element: RsPath, traitName: String, processor: RsResolveProcessor): Boolean {
     processNestedScopesUpwards(element, MACROS, processor)
     val knownDerive = KNOWN_DERIVABLE_TRAITS[traitName]?.findTrait(element.knownItems)
     return if (knownDerive != null) {
